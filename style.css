@@ -1,0 +1,188 @@
+/* ===== Reset ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+body {
+  height: 100vh;
+  overflow: hidden;
+  background: radial-gradient(circle at top, #1a0000, #000);
+  color: #fff;
+}
+
+/* ===== Rose Petal Rain ===== */
+.petal-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.petal {
+  position: absolute;
+  top: -30px;
+  width: 14px;
+  height: 18px;
+  border-radius: 60% 40% 60% 40%;
+  opacity: 0.9;
+  animation: fall linear forwards;
+}
+
+.petal.red {
+  background: linear-gradient(135deg, #ff4d4d, #8b0000);
+}
+
+.petal.black {
+  background: linear-gradient(135deg, #333, #000);
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-30px) rotate(0deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 1;
+  }
+}
+
+/* ===== Popup ===== */
+/* ===== Popup ===== */
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  background: rgba(15, 0, 0, 0.95);
+  border: 1px solid rgba(255, 0, 0, 0.2);
+  backdrop-filter: blur(8px);
+  padding: 28px 24px;
+  width: 280px;
+  text-align: center;
+  border-radius: 18px;
+  box-shadow: 0 0 80px rgba(255, 0, 0, 0.25);
+  z-index: 5;
+  animation: popupIn 0.6s ease forwards;
+}
+
+/* Entry animation */
+@keyframes popupIn {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -60%) scale(0.7);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* Question change animation */
+.question-animate {
+  animation: flipIn 0.4s ease;
+}
+
+@keyframes flipIn {
+  0% {
+    opacity: 0;
+    transform: rotateX(60deg);
+  }
+  100% {
+    opacity: 1;
+    transform: rotateX(0);
+  }
+}
+
+/* NO shake before escape */
+.shake {
+  animation: shake 0.35s ease;
+}
+
+@keyframes shake {
+  0% { transform: translate(-50%, -50%) translateX(0); }
+  25% { transform: translate(-50%, -50%) translateX(-6px); }
+  50% { transform: translate(-50%, -50%) translateX(6px); }
+  75% { transform: translate(-50%, -50%) translateX(-4px); }
+  100% { transform: translate(-50%, -50%) translateX(0); }
+}
+
+.popup h2 {
+  font-size: 18px;
+  margin-bottom: 22px;
+  font-weight: 500;
+}
+
+/* ===== Buttons ===== */
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+}
+
+button {
+  padding: 10px 22px;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+#yesBtn {
+  background: #dc2626;
+  color: #fff;
+}
+
+#noBtn {
+  background: #111;
+  color: #fff;
+  border: 1px solid #dc2626;
+}
+
+button:hover {
+  transform: translateY(-1px);
+}
+
+/* ===== Final Message Animation ===== */
+.final-message {
+  animation: reveal 0.8s ease forwards;
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ===== Celebration Confetti ===== */
+.confetti {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: red;
+  top: -10px;
+  animation: confettiFall linear forwards;
+  z-index: 6;
+}
+
+@keyframes confettiFall {
+  to {
+    transform: translateY(110vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+/* Faster petals on celebration */
+body.celebrate .petal {
+  animation-duration: 2s !important;
+}
+
